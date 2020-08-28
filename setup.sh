@@ -1,17 +1,7 @@
 #!/bin/bash
 
 plugin_name=$1
-repo_name=$2
-
-if [ -z "$2" ]; then
-    repo_name=$plugin_name
-fi
-
-echo "Creating repo ${repo_name}..."
-echo "Creating plugin ${plugin_name}"
-
-echo "Setting up repo files..."
-sed -i "s/TempPlugin/${repo_name}/g" README.md
+echo "Creating plugin ${plugin_name}..."
 
 echo "Copying source files..."
 mv src/TempPlugin.h src/${plugin_name}.h
