@@ -26,6 +26,14 @@ matrix:
     - os: windows
       env: run=sh
 
+# Remove this before making public!!!!
+git:
+  submodules: false
+
+before_install:
+  - echo -e "machine github.com\n  login jatinchowdhury18\n  password $CI_USER_PASSWORD" > ~/.netrc
+  - git submodule update --init --recursive
+
 install:
   # upgrade cmake to 3.18
   - |
