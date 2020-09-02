@@ -9,30 +9,22 @@ if: (type != push) OR (type = push AND branch = master)
 
 matrix:
   include:
-    # - os: linux
-    #   dist: bionic
-    #   addons:
-    #     apt:
-    #       packages:
-    #         - libasound2-dev
-    #         - libxcursor-dev
-    #         - libxinerama-dev
-    #         - libxrandr-dev
-    #         - webkit2gtk-4.0
-    #   env: run=bash
+    - os: linux
+      dist: bionic
+      addons:
+        apt:
+          packages:
+            - libasound2-dev
+            - libxcursor-dev
+            - libxinerama-dev
+            - libxrandr-dev
+            - webkit2gtk-4.0
+      env: run=bash
     - os: osx
       osx_image: xcode10.3
       env: run=sh
     - os: windows
       env: run=sh
-
-# Remove this before making public!!!!
-git:
-  submodules: false
-
-before_install:
-  - echo -e "machine github.com\n  login jatinchowdhury18\n  password $CI_USER_PASSWORD" > ~/.netrc
-  - git submodule update --init --recursive
 
 install:
   # upgrade cmake to 3.18
