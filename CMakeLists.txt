@@ -15,6 +15,7 @@ juce_add_plugin(TempPlugin
 
 juce_generate_juce_header(TempPlugin)
 add_subdirectory(src)
+add_subdirectory(res)
 
 target_compile_definitions(TempPlugin
     PUBLIC
@@ -24,10 +25,10 @@ target_compile_definitions(TempPlugin
     JUCE_USE_CURL=0
     JUCE_VST3_CAN_REPLACE_VST2=0
     FOLEYS_SHOW_GUI_EDITOR_PALLETTE=0
-    FOLEYS_ENABLE_BINARY_DATA=0)
+    FOLEYS_ENABLE_BINARY_DATA=1)
 
 target_link_libraries(TempPlugin PRIVATE
-    # BinaryData
+    BinaryData
     juce::juce_audio_utils
     foleys_gui_magic
     chowdsp_utils)
