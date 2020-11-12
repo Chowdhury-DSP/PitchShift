@@ -15,6 +15,7 @@ juce_add_plugin(TempPlugin
 
 juce_generate_juce_header(TempPlugin)
 add_subdirectory(src)
+include_directories(src)
 add_subdirectory(res)
 
 target_compile_definitions(TempPlugin
@@ -29,6 +30,4 @@ target_compile_definitions(TempPlugin
 
 target_link_libraries(TempPlugin PRIVATE
     BinaryData
-    juce::juce_audio_utils
-    foleys_gui_magic
-    chowdsp_utils)
+    juce_plugin_modules)
