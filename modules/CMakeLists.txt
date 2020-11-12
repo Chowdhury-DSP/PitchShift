@@ -20,13 +20,16 @@ target_compile_definitions(juce_plugin_modules
         JUCE_REPORT_APP_USAGE=0
         JUCE_WEB_BROWSER=0
         JUCE_USE_CURL=0
-        JUCE_STANDALONE_APPLICATION=0
         JucePlugin_Manufacturer="chowdsp"
         JucePlugin_VersionString="${CMAKE_PROJECT_VERSION}"
         JucePlugin_Name="${CMAKE_PROJECT_NAME}"
     INTERFACE
         $<TARGET_PROPERTY:juce_plugin_modules,COMPILE_DEFINITIONS>
 )
+
+if(MSVC)
+    target_compile_options(juce_plugin_modules PRIVATE /wd4458) # supress "declaration hides class member" for Foley's
+endif()
 
 target_include_directories(juce_plugin_modules
     INTERFACE

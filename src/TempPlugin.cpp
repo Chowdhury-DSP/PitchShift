@@ -15,7 +15,7 @@ void TempPlugin::releaseResources()
 
 }
 
-void TempPlugin::processBlock (AudioBuffer<float>& buffer)
+void TempPlugin::processAudioBlock (AudioBuffer<float>& buffer)
 {
 
 }
