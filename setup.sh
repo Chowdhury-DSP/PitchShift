@@ -21,3 +21,12 @@ rm setup.sh
 
 # Stop tracking from template repo
 git remote remove origin
+
+# Remove old git commit history
+git add .
+git commit -m "Set up ${plugin_name}"
+git checkout --orphan new-branch
+git add -A
+git commit -m "Initial commit"
+git branch -D master
+git branch -m main
