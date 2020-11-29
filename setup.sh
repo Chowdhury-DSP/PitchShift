@@ -14,6 +14,10 @@ for file in "${source_files[@]}"; do
     sed -i.bak -e "s/TempPlugin/${plugin_name}/g" $file
 done
 
+# Clean up files we no longer need
 rm *.bak
 rm */*.bak
+rm setup.sh
 
+# Stop tracking from template repo
+git remote remove origin
