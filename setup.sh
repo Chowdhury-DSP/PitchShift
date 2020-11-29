@@ -13,6 +13,8 @@ for file in "${source_files[@]}"; do
     sed -i.bak -e "s/TempPlugin/${plugin_name}/g" $file
 done
 
+sed -i.bak -e "s/JUCEPluginTemplate/${plugin_name}/g" README.md
+
 # Clean up files we no longer need
 rm *.bak
 rm */*.bak
