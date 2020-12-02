@@ -7,6 +7,11 @@ echo "Copying source files..."
 mv src/TempPlugin.h src/${plugin_name}.h
 mv src/TempPlugin.cpp src/${plugin_name}.cpp
 
+echo "Generating plugin ID..."
+plug_id=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 3 | head -n 1) # 3 random letters
+plug_id+=$(cat /dev/urandom | tr -dc '0-9' | fold -w 256 | head -n 1 | head --bytes 1) # + 1 random number
+sed -i.bak -e "s/XXXX/${plug_id}/g" CMakeLists.txt
+
 echo "Setting up source files..."
 declare -a source_files=("validate.sh" "win_builds.sh" "CMakeLists.txt" "src/CMakeLists.txt" "src/${plugin_name}.h" "src/${plugin_name}.cpp")
 for file in "${source_files[@]}"; do
@@ -14,6 +19,7 @@ for file in "${source_files[@]}"; do
 done
 
 sed -i.bak -e "s/JUCEPluginTemplate/${plugin_name}/g" README.md
+sed -i.bak -e "s/JUCE Plugin Template/${plugin_name}/g" README.md
 
 # Clean up files we no longer need
 rm *.bak

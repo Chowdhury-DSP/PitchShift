@@ -10,7 +10,7 @@ add_subdirectory(modules)
 juce_add_plugin(TempPlugin
     COMPANY_NAME chowdsp
     PLUGIN_MANUFACTURER_CODE Chow
-    PLUGIN_CODE tmp3
+    PLUGIN_CODE XXXX
     FORMATS AU VST3 Standalone #VST
     ProductName "TempPlugin")
 
