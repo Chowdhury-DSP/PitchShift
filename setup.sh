@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+    echo "No plugin name provided!"
+    exit 1
+fi
+
 plugin_name=$1
 echo "Creating plugin ${plugin_name}..."
 
@@ -8,8 +13,8 @@ mv src/TempPlugin.h src/${plugin_name}.h
 mv src/TempPlugin.cpp src/${plugin_name}.cpp
 
 echo "Generating plugin ID..."
-plug_id=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 3 | head -n 1) # 3 random letters
-plug_id+=$(cat /dev/urandom | tr -dc '0-9' | fold -w 256 | head -n 1 | head --bytes 1) # + 1 random number
+plug_id=$(cat /dev/urandom | LC_CTYPE=C tr -dc 'a-z' | fold -w 3 | head -n 1) # 3 random letters
+plug_id+=$(cat /dev/urandom | LC_CTYPE=C tr -dc '0-9' | fold -w 256 | head -n 1 | head -c 1) # + 1 random number
 sed -i.bak -e "s/XXXX/${plug_id}/g" CMakeLists.txt
 
 echo "Setting up source files..."
@@ -21,15 +26,16 @@ done
 sed -i.bak -e "s/JUCEPluginTemplate/${plugin_name}/g" README.md
 sed -i.bak -e "s/JUCE Plugin Template/${plugin_name}/g" README.md
 
+# Remove `run setup.sh` lines from Travis and README
+sed -i.bak -e '/setup.sh/d' .travis.yml
+sed -i.bak -e '/setup.sh/{N;d;}' README.md
+sed -i.bak -e '/set up plugin/d' README.md
+
 # Clean up files we no longer need
 rm *.bak
+rm .*.bak
 rm */*.bak
 rm setup.sh
-
-# Remove `run setup.sh` lines from Travis and README
-sed -i -e '/setup.sh/d' .travis.yml
-sed -i -e '/setup.sh/{N;d}' README.md
-sed -i -e '/set up plugin/d' README.md
 
 # Stop tracking from template repo
 git remote remove origin
