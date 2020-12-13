@@ -1,6 +1,6 @@
 # JUCE Plugin Template
 
-[![Build Status](https://travis-ci.com/Chowdhury-DSP/JUCEPluginTemplate.svg?token=Ub9niJrqG1Br1qaaxp7E&branch=master)](https://travis-ci.com/Chowdhury-DSP/JUCEPluginTemplate)
+![CI](https://github.com/Chowdhury-DSP/JUCEPluginTemplate/workflows/CI/badge.svg)
 [![License](https://img.shields.io/badge/License-BSD-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 This repository contains template code for building a Chowdhury DSP

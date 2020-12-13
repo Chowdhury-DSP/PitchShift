@@ -18,7 +18,7 @@ plug_id+=$(cat /dev/urandom | LC_CTYPE=C tr -dc '0-9' | fold -w 256 | head -n 1 
 sed -i.bak -e "s/XXXX/${plug_id}/g" CMakeLists.txt
 
 echo "Setting up source files..."
-declare -a source_files=("validate.sh" "win_builds.sh" "CMakeLists.txt" "src/CMakeLists.txt" "src/${plugin_name}.h" "src/${plugin_name}.cpp")
+declare -a source_files=("validate.sh" "win_builds.sh" "CMakeLists.txt" "src/CMakeLists.txt" "src/${plugin_name}.h" "src/${plugin_name}.cpp" ".github/FUNDING.yml")
 for file in "${source_files[@]}"; do
     sed -i.bak -e "s/TempPlugin/${plugin_name}/g" $file
 done
@@ -27,13 +27,12 @@ sed -i.bak -e "s/JUCEPluginTemplate/${plugin_name}/g" README.md
 sed -i.bak -e "s/JUCE Plugin Template/${plugin_name}/g" README.md
 
 # Remove `run setup.sh` lines from Travis and README
-sed -i.bak -e '/setup.sh/d' .travis.yml
+sed -i.bak -e '42,48d' .github/workflows/cmake.yml
 sed -i.bak -e '/setup.sh/{N;d;}' README.md
 sed -i.bak -e '/set up plugin/d' README.md
 
 # Clean up files we no longer need
 rm *.bak
-rm .*.bak
 rm */*.bak
 rm setup.sh
 
