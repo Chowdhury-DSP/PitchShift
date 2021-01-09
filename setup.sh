@@ -34,6 +34,7 @@ sed -i.bak -e '/set up plugin/d' README.md
 # Clean up files we no longer need
 rm *.bak
 rm */*.bak
+rm .github/*.bak
 rm setup.sh
 
 # Stop tracking from template repo
