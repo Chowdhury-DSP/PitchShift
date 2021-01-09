@@ -6,6 +6,7 @@ add_library(juce_plugin_modules STATIC)
 
 target_link_libraries(juce_plugin_modules
     PRIVATE
+        BinaryData
         juce::juce_audio_utils
         foleys_gui_magic
         chowdsp_utils

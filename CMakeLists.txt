@@ -28,6 +28,4 @@ target_compile_definitions(TempPlugin
     JUCE_VST3_CAN_REPLACE_VST2=0
 )
 
-target_link_libraries(TempPlugin PRIVATE
-    BinaryData
-    juce_plugin_modules)
+target_link_libraries(TempPlugin PRIVATE juce_plugin_modules)
