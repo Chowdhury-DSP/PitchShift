@@ -1,9 +1,13 @@
 add_subdirectory(JUCE)
+include(cmake/SubprojectVersion.cmake)
+subproject_version(JUCE juce_version)
+message(STATUS "VERSION for JUCE: ${juce_version}")
+
 juce_add_modules(foleys_gui_magic)
 juce_add_modules(chowdsp_utils)
 
+include(cmake/WarningFlags.cmake)
 add_library(juce_plugin_modules STATIC)
-
 target_link_libraries(juce_plugin_modules
     PRIVATE
         BinaryData
@@ -13,7 +17,7 @@ target_link_libraries(juce_plugin_modules
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
-        juce::juce_recommended_warning_flags
+        warning_flags
 )
 
 target_compile_definitions(juce_plugin_modules
@@ -30,10 +34,6 @@ target_compile_definitions(juce_plugin_modules
     INTERFACE
         $<TARGET_PROPERTY:juce_plugin_modules,COMPILE_DEFINITIONS>
 )
-
-if(MSVC)
-    target_compile_options(juce_plugin_modules PRIVATE /wd4458) # supress "declaration hides class member" for Foley's
-endif()
 
 target_include_directories(juce_plugin_modules
     INTERFACE

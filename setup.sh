@@ -12,13 +12,30 @@ echo "Copying source files..."
 mv src/TempPlugin.h src/${plugin_name}.h
 mv src/TempPlugin.cpp src/${plugin_name}.cpp
 
+echo "Copying installer files..."
+mv installers/mac/TempPlugin.pkgproj installers/mac/${plugin_name}.pkgproj
+mv installers/windows/TempPlugin_Install_Script.iss installers/windows/${plugin_name}_Install_Script.iss
+
 echo "Generating plugin ID..."
 plug_id=$(cat /dev/urandom | LC_CTYPE=C tr -dc 'a-z' | fold -w 3 | head -n 1) # 3 random letters
 plug_id+=$(cat /dev/urandom | LC_CTYPE=C tr -dc '0-9' | fold -w 256 | head -n 1 | head -c 1) # + 1 random number
 sed -i.bak -e "s/XXXX/${plug_id}/g" CMakeLists.txt
 
 echo "Setting up source files..."
-declare -a source_files=("validate.sh" "win_builds.sh" "CMakeLists.txt" "src/CMakeLists.txt" "src/${plugin_name}.h" "src/${plugin_name}.cpp" ".github/FUNDING.yml")
+declare -a source_files=("validate.sh" 
+    "win_builds.sh"
+    "mac_builds.sh"
+    "CMakeLists.txt"
+    "src/CMakeLists.txt"
+    "src/${plugin_name}.h"
+    "src/${plugin_name}.cpp"
+    ".github/FUNDING.yml"
+    "installers/mac/build_mac_installer.sh"
+    "installers/mac/Intro.txt"
+    "installers/mac/${plugin_name}.pkgproj"
+    "installers/win/build_win_installer.sh"
+    "installers/win/TempPlugin_Install_Script.iss"
+)
 for file in "${source_files[@]}"; do
     sed -i.bak -e "s/TempPlugin/${plugin_name}/g" $file
 done
