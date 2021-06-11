@@ -33,8 +33,8 @@ declare -a source_files=("validate.sh"
     "installers/mac/build_mac_installer.sh"
     "installers/mac/Intro.txt"
     "installers/mac/${plugin_name}.pkgproj"
-    "installers/win/build_win_installer.sh"
-    "installers/win/TempPlugin_Install_Script.iss"
+    "installers/windows/build_win_installer.sh"
+    "installers/windows/${plugin_name}_Install_Script.iss"
 )
 for file in "${source_files[@]}"; do
     sed -i.bak -e "s/TempPlugin/${plugin_name}/g" $file
