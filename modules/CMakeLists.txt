@@ -28,9 +28,9 @@ target_compile_definitions(juce_plugin_modules
         JUCE_USE_CURL=0
         JUCE_JACK=1
         JUCE_ALSA=1
-        JucePlugin_Manufacturer="chowdsp"
+        JucePlugin_Manufacturer="${COMPANY_NAME}"
         JucePlugin_VersionString="${CMAKE_PROJECT_VERSION}"
-        JucePlugin_Name="${CMAKE_PROJECT_NAME}"
+        JucePlugin_Name="${PRODUCT_NAME}"
         FOLEYS_SHOW_GUI_EDITOR_PALLETTE=0
         FOLEYS_ENABLE_BINARY_DATA=1
     INTERFACE
