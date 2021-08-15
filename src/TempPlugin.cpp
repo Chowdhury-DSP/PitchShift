@@ -1,5 +1,9 @@
 #include "TempPlugin.h"
 
+TempPlugin::TempPlugin()
+{
+}
+
 void TempPlugin::addParameters (Parameters& params)
 {
 }

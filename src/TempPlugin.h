@@ -1,13 +1,14 @@
 #pragma once
 
-#include <JuceHeader.h>
+#include <pch.h>
 
 class TempPlugin : public chowdsp::PluginBase<TempPlugin>
 {
 public:
-    TempPlugin() {}
+    TempPlugin();
 
     static void addParameters (Parameters& params);
+    
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
     void processAudioBlock (AudioBuffer<float>& buffer) override;
