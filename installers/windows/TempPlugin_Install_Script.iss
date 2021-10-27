@@ -1,13 +1,29 @@
+#define MyAppPublisher "Chowdhury DSP"
+#define MyAppURL "https://chowdsp.com"
+#define MyAppName "TempPlugin"
+#define MyAppVersion "##APPVERSION##"
+
 [Setup]
-AppName=TempPlugin
-AppVersion=##APPVERSION##
-DisableWelcomePage=no
+AppName="{#MyAppName} {#MyAppVersion}"
+AppVersion={#MyAppVersion}
+AppVerName={#MyAppName}
+AppPublisher={#MyAppPublisher}
+AppPublisherURL={#MyAppURL}
+AppSupportURL={#MyAppURL}
+AppUpdatesURL={#MyAppURL}
+DefaultDirName={commonpf64}\Chowdhury DSP\
+DefaultGroupName={#MyAppName}
+DisableProgramGroupPage=yes
 DisableDirPage=yes
-DefaultDirName={commoncf64}
-DefaultGroupName=TempPlugin
-OutputBaseFilename="TempPlugin-Win-##APPVERSION##"
-OutputDir=.
+DisableWelcomePage=no
 LicenseFile=../../LICENSE
+OutputBaseFilename="TempPlugin-Win-{#MyAppVersion}"
+OutputDir=.
+; SetupIconFile=myicon.ico
+; UninstallDisplayIcon=myicon.ico
+UninstallFilesDir={commonpf64}\Chowdhury DSP\{#MyAppName}
+Compression=lzma
+SolidCompression=yes
 
 [Types]
 Name: "full"; Description: "Full installation"
@@ -25,6 +41,9 @@ Source: "../../bin/Win64/TempPlugin.vst3"; DestDir: "{code:GetDir|VST3_64}"; Com
 Source: "../../bin/Win64/TempPlugin.dll"; DestDir: "{code:GetDir|VST_64}"; Components: VST_64; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "../../bin/Win32/TempPlugin.vst3"; DestDir: "{code:GetDir|VST3_32}"; Components: VST3_32; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "../../bin/Win32/TempPlugin.dll"; DestDir: "{code:GetDir|VST_32}"; Components: VST_32; Flags: ignoreversion recursesubdirs createallsubdirs
+
+[Icons]
+Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 
 [Code]
 var
