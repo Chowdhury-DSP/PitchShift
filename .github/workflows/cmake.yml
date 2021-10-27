@@ -52,7 +52,7 @@ jobs:
 
     - name: Build
       shell: bash
-      run: cmake --build build --config Release --parallel
+      run: cmake --build build --config Release --parallel 4
 
     - name: Validate
       if: runner.os == 'Windows'
