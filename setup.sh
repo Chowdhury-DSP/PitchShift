@@ -53,6 +53,7 @@ rm *.bak
 rm */*.bak
 rm .github/*.bak
 rm .github/*/*.bak
+rm installers/*/*.bak
 rm setup.sh
 
 # Stop tracking from template repo
