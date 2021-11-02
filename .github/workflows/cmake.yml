@@ -56,4 +56,4 @@ jobs:
 
     - name: Validate
       if: runner.os == 'Windows'
-      run: bash validate.sh
+      run: bash scripts/validate.sh

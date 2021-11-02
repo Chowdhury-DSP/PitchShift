@@ -22,9 +22,9 @@ plug_id+=$(cat /dev/urandom | LC_CTYPE=C tr -dc '0-9' | fold -w 256 | head -n 1 
 sed -i.bak -e "s/XXXX/${plug_id}/g" CMakeLists.txt
 
 echo "Setting up source files..."
-declare -a source_files=("validate.sh" 
-    "win_builds.sh"
-    "mac_builds.sh"
+declare -a source_files=("scripts/validate.sh" 
+    "scripts/win_builds.sh"
+    "scripts/mac_builds.sh"
     "CMakeLists.txt"
     "src/CMakeLists.txt"
     "src/${plugin_name}.h"
