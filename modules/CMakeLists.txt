@@ -4,9 +4,9 @@ subproject_version(JUCE juce_version)
 message(STATUS "VERSION for JUCE: ${juce_version}")
 
 juce_add_modules(foleys_gui_magic)
-juce_add_modules(chowdsp_dsp)
-juce_add_modules(chowdsp_gui)
-juce_add_modules(chowdsp_plugin_utils)
+juce_add_modules(chowdsp_utils/modules/chowdsp_dsp)
+juce_add_modules(chowdsp_utils/modules/chowdsp_gui)
+juce_add_modules(chowdsp_utils/modules/chowdsp_plugin_utils)
 
 include(cmake/WarningFlags.cmake)
 add_library(juce_plugin_modules STATIC)
