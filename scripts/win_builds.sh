@@ -25,7 +25,7 @@ sed -i -e "s~# juce_set_vst2_sdk_path.*~juce_set_vst2_sdk_path(${VST_SDK})~" CMa
 
 # cmake new builds
 build64 &
-build32 &
+# build32 &
 wait
 
 # copy builds to bin
@@ -37,9 +37,9 @@ for plugin in "${plugins[@]}"; do
     cp -R build/${plugin}_artefacts/Release/VST/${plugin}.dll bin/Win64/${plugin}.dll
     cp -R build/${plugin}_artefacts/Release/VST3/${plugin}.vst3 bin/Win64/${plugin}.vst3
 
-    cp -R build32/${plugin}_artefacts/Release/Standalone/${plugin}.exe bin/Win32/${plugin}.exe
-    cp -R build32/${plugin}_artefacts/Release/VST/${plugin}.dll bin/Win32/${plugin}.dll
-    cp -R build32/${plugin}_artefacts/Release/VST3/${plugin}.vst3 bin/Win32/${plugin}.vst3
+    # cp -R build32/${plugin}_artefacts/Release/Standalone/${plugin}.exe bin/Win32/${plugin}.exe
+    # cp -R build32/${plugin}_artefacts/Release/VST/${plugin}.dll bin/Win32/${plugin}.dll
+    # cp -R build32/${plugin}_artefacts/Release/VST3/${plugin}.vst3 bin/Win32/${plugin}.vst3
 done
 
 # reset CMakeLists.txt
@@ -50,9 +50,9 @@ VERSION=$(cut -f 2 -d '=' <<< "$(grep 'CMAKE_PROJECT_VERSION:STATIC' build/CMake
 (
     cd bin
     rm -f "TempPlugin-Win64-${VERSION}.zip"
-    rm -f "TempPlugin-Win32-${VERSION}.zip"
     zip -r "TempPlugin-Win64-${VERSION}.zip" Win64
-    zip -r "TempPlugin-Win32-${VERSION}.zip" Win32
+    # rm -f "TempPlugin-Win32-${VERSION}.zip"
+    # zip -r "TempPlugin-Win32-${VERSION}.zip" Win32
 )
 
 # create installer

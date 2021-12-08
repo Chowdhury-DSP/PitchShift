@@ -11,7 +11,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={commonpf64}\Chowdhury DSP\
+DefaultDirName={commonpf64}\{#MyAppPublisher}\
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 DisableDirPage=yes
@@ -21,7 +21,7 @@ OutputBaseFilename="TempPlugin-Win-{#MyAppVersion}"
 OutputDir=.
 ; SetupIconFile=myicon.ico
 ; UninstallDisplayIcon=myicon.ico
-UninstallFilesDir={commonpf64}\Chowdhury DSP\{#MyAppName}
+UninstallFilesDir={commonpf64}\{#MyAppPublisher}\{#MyAppName}
 Compression=lzma
 SolidCompression=yes
 
@@ -31,16 +31,16 @@ Name: "custom"; Description: "Custom installation"; Flags: iscustom
 
 [Components]
 Name: "VST3_64"; Description: "VST3 Plugin 64-bit"; Types: full
-Name: "VST_64"; Description: "VST Plugin 64-bit"; Types: full
-Name: "VST3_32"; Description: "VST3 Plugin 32-bit"; Types: full
-Name: "VST_32"; Description: "VST Plugin 32-bit"; Types: full
+; Name: "VST3_32"; Description: "VST3 Plugin 32-bit"; Types: full
+; Name: "VST_64"; Description: "VST Plugin 64-bit"; Types: full
+; Name: "VST_32"; Description: "VST Plugin 32-bit"; Types: full
 ; Name: "AAX"; Description: "AAX Plugin"; Types: full
 
 [Files]
 Source: "../../bin/Win64/TempPlugin.vst3"; DestDir: "{code:GetDir|VST3_64}"; Components: VST3_64; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "../../bin/Win64/TempPlugin.dll"; DestDir: "{code:GetDir|VST_64}"; Components: VST_64; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "../../bin/Win32/TempPlugin.vst3"; DestDir: "{code:GetDir|VST3_32}"; Components: VST3_32; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "../../bin/Win32/TempPlugin.dll"; DestDir: "{code:GetDir|VST_32}"; Components: VST_32; Flags: ignoreversion recursesubdirs createallsubdirs
+; Source: "../../bin/Win32/TempPlugin.vst3"; DestDir: "{code:GetDir|VST3_32}"; Components: VST3_32; Flags: ignoreversion recursesubdirs createallsubdirs
+; Source: "../../bin/Win64/TempPlugin.dll"; DestDir: "{code:GetDir|VST_64}"; Components: VST_64; Flags: ignoreversion recursesubdirs createallsubdirs
+; Source: "../../bin/Win32/TempPlugin.dll"; DestDir: "{code:GetDir|VST_32}"; Components: VST_32; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
