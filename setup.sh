@@ -56,6 +56,22 @@ rm .github/*/*.bak
 rm installers/*/*.bak
 rm setup.sh
 
+# update chowdsp_utils
+(
+    cd modules/chowdsp_utils
+    git checkout master
+    git fetch origin
+    git pull
+)
+
+# update foleys_gui_magic
+(
+    cd modules/foleys_gui_magic
+    git checkout chowdsp
+    git fetch origin
+    git pull
+)
+
 # Stop tracking from template repo
 git remote remove origin
 
