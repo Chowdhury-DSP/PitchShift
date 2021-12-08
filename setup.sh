@@ -58,18 +58,22 @@ rm setup.sh
 
 # update chowdsp_utils
 (
+    echo "Updating submodule: chowdsp_utils"
     cd modules/chowdsp_utils
-    git checkout master
     git fetch origin
+    git checkout master
     git pull
+    git log -n 1
 )
 
 # update foleys_gui_magic
 (
+    echo "Updating submodule: foleys_gui_magic"
     cd modules/foleys_gui_magic
-    git checkout chowdsp
     git fetch origin
+    git checkout chowdsp
     git pull
+    git log -n 1
 )
 
 # Stop tracking from template repo
