@@ -34,7 +34,10 @@ juce_add_plugin(TempPlugin
     PLUGIN_CODE XXXX
     FORMATS ${JUCE_FORMATS}
     PRODUCT_NAME "${PRODUCT_NAME}"
+    
     LV2_URI https://github.com/Chowdhury-DSP/TempPlugin
+    
+    MICROPHONE_PERMISSION_ENABLED TRUE
 )
 
 juce_generate_juce_header(TempPlugin)
