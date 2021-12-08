@@ -56,9 +56,12 @@ rm .github/*/*.bak
 rm installers/*/*.bak
 rm setup.sh
 
+echo "Fetching submodules..."
+git submodule update --init --recursive
+
 # update chowdsp_utils
 (
-    echo "Updating submodule: chowdsp_utils"
+    echo "Updating submodule: chowdsp_utils..."
     cd modules/chowdsp_utils
     git fetch origin
     git checkout master
@@ -68,9 +71,10 @@ rm setup.sh
 
 # update foleys_gui_magic
 (
-    echo "Updating submodule: foleys_gui_magic"
+    echo "Updating submodule: foleys_gui_magic..."
     cd modules/foleys_gui_magic
     git fetch origin
+    git branch -la
     git checkout chowdsp
     git pull
     git log -n 1
