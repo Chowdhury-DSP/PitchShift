@@ -37,12 +37,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Fetch submodules # only on Linux, since setup script will do this otherwsie
+      if: runner.os == 'Linux'
+      run: git submodule update --init --recursive
+
     - name: Run setup script
       if: runner.os != 'Linux'
       run: |
         git config --global user.email "jatinchowdhury18@gmail.com"
         git config --global user.name "Jatin Chowdhury"
-        bash setup.sh MyPlugin --no-clean
+        bash setup.sh MyPlugin
 
     - name: Configure
       shell: bash

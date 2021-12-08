@@ -74,7 +74,6 @@ git submodule update --init --recursive
     echo "Updating submodule: foleys_gui_magic..."
     cd modules/foleys_gui_magic
     git fetch origin
-    git branch -la
     git checkout chowdsp
     git pull
     git log -n 1
