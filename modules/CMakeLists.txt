@@ -34,6 +34,7 @@ target_compile_definitions(juce_plugin_modules
         JucePlugin_Manufacturer="${COMPANY_NAME}"
         JucePlugin_VersionString="${CMAKE_PROJECT_VERSION}"
         JucePlugin_Name="${PRODUCT_NAME}"
+        JUCE_MODAL_LOOPS_PERMITTED=0
         FOLEYS_SHOW_GUI_EDITOR_PALLETTE=0
         FOLEYS_ENABLE_BINARY_DATA=1
     INTERFACE
