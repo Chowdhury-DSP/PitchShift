@@ -16,9 +16,7 @@ target_link_libraries(juce_plugin_modules
         juce::juce_audio_utils
         juce::juce_dsp
         foleys_gui_magic
-        chowdsp_dsp
-        chowdsp_gui
-        chowdsp_plugin_utils
+        chowdsp_plugin_base
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
