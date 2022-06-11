@@ -1,10 +1,12 @@
 add_subdirectory(JUCE)
-include(cmake/SubprojectVersion.cmake)
+add_subdirectory(chowdsp_utils)
+
 subproject_version(JUCE juce_version)
 message(STATUS "VERSION for JUCE: ${juce_version}")
+subproject_version(chowdsp_utils chowdsp_version)
+message(STATUS "VERSION for chowdsp: ${chowdsp_version}")
 
 juce_add_modules(foleys_gui_magic)
-add_subdirectory(chowdsp_utils)
 
 include(cmake/WarningFlags.cmake)
 add_library(juce_plugin_modules STATIC)
