@@ -15,9 +15,6 @@ To build from scratch, you must have CMake installed.
 $ git clone https://github.com/Chowdhury-DSP/JUCEPluginTemplate.git
 $ cd JUCEPluginTemplate
 
-# initialize and set up submodules
-$ git submodule update --init --recursive
-
 # set up plugin
 $ ./setup.sh MyPluginName
 
