@@ -5,8 +5,14 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+if [ -z "$2" ]; then
+    echo "No plugin ID provided!"
+    exit 1
+fi
+
 plugin_name=$1
-echo "Creating plugin ${plugin_name}..."
+plugin_id=$2
+echo "Creating plugin ${plugin_name}, with ID ${plugin_id} ..."
 
 echo "Copying source files..."
 mv src/TempPlugin.h src/${plugin_name}.h
@@ -16,10 +22,8 @@ echo "Copying installer files..."
 mv installers/mac/TempPlugin.pkgproj installers/mac/${plugin_name}.pkgproj
 mv installers/windows/TempPlugin_Install_Script.iss installers/windows/${plugin_name}_Install_Script.iss
 
-echo "Generating plugin ID..."
-plug_id=$(cat /dev/urandom | LC_CTYPE=C tr -dc 'a-z' | fold -w 3 | head -n 1) # 3 random letters
-plug_id+=$(cat /dev/urandom | LC_CTYPE=C tr -dc '0-9' | fold -w 256 | head -n 1 | head -c 1) # + 1 random number
-sed -i.bak -e "s/XXXX/${plug_id}/g" CMakeLists.txt
+echo "Setting plugin ID..."
+sed -i.bak -e "s/XXXX/${plugin_id}/g" CMakeLists.txt
 
 echo "Setting up source files..."
 declare -a source_files=("scripts/validate.sh" 
@@ -65,16 +69,6 @@ git submodule update --init --recursive
     cd modules/chowdsp_utils
     git fetch origin
     git checkout master
-    git pull
-    git log -n 1
-)
-
-# update foleys_gui_magic
-(
-    echo "Updating submodule: foleys_gui_magic..."
-    cd modules/foleys_gui_magic
-    git fetch origin
-    git checkout chowdsp
     git pull
     git log -n 1
 )

@@ -30,17 +30,19 @@ Name: "full"; Description: "Full installation"
 Name: "custom"; Description: "Custom installation"; Flags: iscustom
 
 [Components]
-Name: "VST3_64"; Description: "VST3 Plugin 64-bit"; Types: full
-; Name: "VST3_32"; Description: "VST3 Plugin 32-bit"; Types: full
-; Name: "VST_64"; Description: "VST Plugin 64-bit"; Types: full
-; Name: "VST_32"; Description: "VST Plugin 32-bit"; Types: full
+Name: "VST3_64"; Description: "VST3 Plugin"; Types: full
+Name: "CLAP_64"; Description: "CLAP Plugin"; Types: full
+; Name: "VST_64"; Description: "VST Plugin"; Types: full
+; Name: "Standalone"; Description: "Standalone Plugin"; Types: full
 ; Name: "AAX"; Description: "AAX Plugin"; Types: full
 
 [Files]
-Source: "../../bin/Win64/TempPlugin.vst3"; DestDir: "{code:GetDir|VST3_64}"; Components: VST3_64; Flags: ignoreversion recursesubdirs createallsubdirs
-; Source: "../../bin/Win32/TempPlugin.vst3"; DestDir: "{code:GetDir|VST3_32}"; Components: VST3_32; Flags: ignoreversion recursesubdirs createallsubdirs
-; Source: "../../bin/Win64/TempPlugin.dll"; DestDir: "{code:GetDir|VST_64}"; Components: VST_64; Flags: ignoreversion recursesubdirs createallsubdirs
-; Source: "../../bin/Win32/TempPlugin.dll"; DestDir: "{code:GetDir|VST_32}"; Components: VST_32; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "../../bin/Win64/TempPlugin.vst3"; Excludes: "*.aaxplugin,*.clap"; DestDir: "{code:GetDir|VST3_64}"; Components: VST3_64; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "../../bin/Win64/TempPlugin.clap"; Excludes: "*.aaxplugin,*.vst3"; DestDir: "{code:GetDir|CLAP_64}"; Components: CLAP_64; Flags: ignoreversion recursesubdirs createallsubdirs
+; Source: "../../bin/Win64/TempPlugin.dll"; Excludes: "*.vst3,*.aaxplugin,*.clap"; DestDir: "{code:GetDir|VST_64}"; Components: VST_64; Flags: ignoreversion recursesubdirs createallsubdirs
+; Source: "../../bin/Win64/TempPlugin.exe"; Excludes: "*.vst3,*.aaxplugin,*.clap"; DestDir: "{code:GetDir|Standalone}"; Components: Standalone; Flags: ignoreversion recursesubdirs createallsubdirs
+; Source: "../../bin/Win64/TempPlugin.aaxplugin"; Excludes: "*.vst3,*.clap"; DestDir: "{code:GetDir|AAX}"; Components: AAX; Flags: ignoreversion recursesubdirs createallsubdirs
+
 
 [Icons]
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
@@ -191,6 +193,8 @@ begin
     Result := Vst_64DirPage.values[0]
   else if (Param = 'VST_32') then
     Result := Vst_32DirPage.values[0]
+  else if (Param = 'CLAP_64') then
+    Result := ExpandConstant('{commoncf64}\CLAP')
 end;
 
 function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo,
@@ -218,6 +222,9 @@ begin
 
   if IsSelected('vst_32') then
     S := S + Space +  GetDir('VST_32') + ' (VST 32-bit)' + NewLine;
+
+  if IsSelected('clap_64') then
+    S := S + Space +  GetDir('CLAP_64') + ' (CLAP 64-bit)' + NewLine;
 
   Result := S;
 end;

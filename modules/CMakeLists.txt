@@ -6,8 +6,6 @@ message(STATUS "VERSION for JUCE: ${juce_version}")
 subproject_version(chowdsp_utils chowdsp_version)
 message(STATUS "VERSION for chowdsp: ${chowdsp_version}")
 
-juce_add_modules(foleys_gui_magic)
-
 include(cmake/WarningFlags.cmake)
 add_library(juce_plugin_modules STATIC)
 target_link_libraries(juce_plugin_modules
@@ -15,13 +13,23 @@ target_link_libraries(juce_plugin_modules
         BinaryData
         juce::juce_audio_utils
         juce::juce_dsp
-        foleys_gui_magic
-        chowdsp_plugin_base
+        chowdsp::chowdsp_plugin_base
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
         warning_flags
 )
+
+if(NOT IOS)
+    add_subdirectory(clap-juce-extensions EXCLUDE_FROM_ALL)
+    target_link_libraries(juce_plugin_modules
+        PRIVATE
+            chowdsp::chowdsp_clap_extensions
+            clap_juce_extensions
+    )
+endif()
+
+add_diagnostic_info(juce_plugin_modules)
 
 target_compile_definitions(juce_plugin_modules
     PUBLIC
@@ -35,8 +43,6 @@ target_compile_definitions(juce_plugin_modules
         JucePlugin_VersionString="${CMAKE_PROJECT_VERSION}"
         JucePlugin_Name="${PRODUCT_NAME}"
         JUCE_MODAL_LOOPS_PERMITTED=0
-        FOLEYS_SHOW_GUI_EDITOR_PALLETTE=0
-        FOLEYS_ENABLE_BINARY_DATA=1
     INTERFACE
         $<TARGET_PROPERTY:juce_plugin_modules,COMPILE_DEFINITIONS>
 )
@@ -52,9 +58,3 @@ set_target_properties(juce_plugin_modules PROPERTIES
     C_VISBILITY_PRESET hidden
     CXX_VISIBILITY_PRESET hidden
 )
-
-if(NOT APPLE)
-    message(STATUS "Linking with OpenGL")
-    target_link_libraries(juce_plugin_modules PRIVATE juce::juce_opengl)
-    target_compile_definitions(juce_plugin_modules PUBLIC FOLEYS_ENABLE_OPEN_GL_CONTEXT=1)
-endif()

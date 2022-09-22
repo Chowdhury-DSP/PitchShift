@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.12" CACHE STRING "Minimum OS X deployment target")
 project(TempPlugin VERSION 1.0.0)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(COMPANY_NAME "chowdsp")
 set(PRODUCT_NAME "TempPlugin")
 
@@ -35,10 +35,20 @@ juce_add_plugin(TempPlugin
     FORMATS ${JUCE_FORMATS}
     PRODUCT_NAME "${PRODUCT_NAME}"
     
-    LV2_URI https://github.com/Chowdhury-DSP/TempPlugin
+    LV2URI https://github.com/Chowdhury-DSP/TempPlugin
     
     MICROPHONE_PERMISSION_ENABLED TRUE
 )
+
+if(NOT IOS)
+    clap_juce_extensions_plugin(
+        TARGET TempPlugin
+        CLAP_ID "org.chowdsp.TempPlugin"
+        CLAP_FEATURES audio-effect
+        CLAP_PROCESS_EVENTS_RESOLUTION_SAMPLES 64
+        CLAP_USE_JUCE_PARAMETER_RANGES DISCRETE
+    )
+endif()
 
 juce_generate_juce_header(TempPlugin)
 add_subdirectory(src)

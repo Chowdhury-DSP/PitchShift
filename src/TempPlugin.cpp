@@ -12,12 +12,13 @@ void TempPlugin::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
 }
 
-void TempPlugin::releaseResources()
+void TempPlugin::processAudioBlock (AudioBuffer<float>& buffer)
 {
 }
 
-void TempPlugin::processAudioBlock (AudioBuffer<float>& buffer)
+AudioProcessorEditor* TempPlugin::createEditor()
 {
+    return new GenericAudioProcessorEditor { *this };
 }
 
 // This creates new instances of the plugin
