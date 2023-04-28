@@ -47,7 +47,7 @@ done
 sed -i.bak -e "s/JUCEPluginTemplate/${plugin_name}/g" README.md
 sed -i.bak -e "s/JUCE Plugin Template/${plugin_name}/g" README.md
 
-# Remove `run setup.sh` lines from Travis and README
+# Remove `run setup.sh` lines from CI and README
 sed -i.bak -e '42,48d' .github/workflows/cmake.yml
 sed -i.bak -e '/setup.sh/{N;d;}' README.md
 sed -i.bak -e '/set up plugin/d' README.md
@@ -72,6 +72,16 @@ git submodule update --init --recursive
     git pull
     git log -n 1
 )
+
+  # update clap-juce-extensions
+  (
+      echo "Updating submodule: clap-juce-extensions..."
+      cd modules/clap-juce-extensions
+      git fetch origin
+      git checkout main
+      git pull
+      git log -n 1
+  )
 
 # Stop tracking from template repo
 git remote remove origin

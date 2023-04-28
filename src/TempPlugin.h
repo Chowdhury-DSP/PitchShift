@@ -2,18 +2,22 @@
 
 #include <pch.h>
 
-class TempPlugin : public chowdsp::PluginBase<TempPlugin>
+struct Params : chowdsp::ParamHolder
+{
+};
+
+using State = chowdsp::PluginStateImpl<Params>;
+
+class TempPlugin : public chowdsp::PluginBase<State>
 {
 public:
     TempPlugin();
 
-    static void addParameters (Parameters& params);
-
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override {}
-    void processAudioBlock (AudioBuffer<float>& buffer) override;
+    void processAudioBlock (juce::AudioBuffer<float>& buffer) override;
 
-    AudioProcessorEditor* createEditor() override;
+    juce::AudioProcessorEditor* createEditor() override;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TempPlugin)

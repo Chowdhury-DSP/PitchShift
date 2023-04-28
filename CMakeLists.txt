@@ -53,7 +53,6 @@ if(NOT IOS)
     )
 endif()
 
-juce_generate_juce_header(TempPlugin)
 add_subdirectory(src)
 include_directories(src)
 add_subdirectory(res)

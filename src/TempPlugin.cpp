@@ -1,28 +1,22 @@
 #include "TempPlugin.h"
 
-TempPlugin::TempPlugin()
+TempPlugin::TempPlugin() = default;
+
+void TempPlugin::prepareToPlay ([[maybe_unused]] double sampleRate, [[maybe_unused]] int samplesPerBlock)
 {
 }
 
-void TempPlugin::addParameters (Parameters& params)
+void TempPlugin::processAudioBlock ([[maybe_unused]] juce::AudioBuffer<float>& buffer)
 {
 }
 
-void TempPlugin::prepareToPlay (double sampleRate, int samplesPerBlock)
+juce::AudioProcessorEditor* TempPlugin::createEditor()
 {
-}
-
-void TempPlugin::processAudioBlock (AudioBuffer<float>& buffer)
-{
-}
-
-AudioProcessorEditor* TempPlugin::createEditor()
-{
-    return new GenericAudioProcessorEditor { *this };
+    return new chowdsp::ParametersViewEditor { *this, state, state.params };
 }
 
 // This creates new instances of the plugin
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new TempPlugin();
 }
