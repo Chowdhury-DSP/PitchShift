@@ -79,6 +79,7 @@ git submodule update --init --recursive
       cd modules/clap-juce-extensions
       git fetch origin
       git checkout main
+      git submodule update --init --recursive
       git pull
       git log -n 1
   )
