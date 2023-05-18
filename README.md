@@ -16,7 +16,7 @@ $ git clone https://github.com/Chowdhury-DSP/JUCEPluginTemplate.git
 $ cd JUCEPluginTemplate
 
 # set up plugin
-$ ./setup.sh MyPluginName
+$ ./setup.sh MyPluginName MyPluginID
 
 # build with CMake
 $ cmake -Bbuild
