@@ -13,7 +13,7 @@ class TempPlugin : public chowdsp::PluginBase<State>
 public:
     TempPlugin();
 
-    void prepareToPlay (double sampleRate, int samplesPerBlock) override;
+    void prepareToPlay (double sample_rate, int samples_per_block) override;
     void releaseResources() override {}
     void processAudioBlock (juce::AudioBuffer<float>& buffer) override;
 

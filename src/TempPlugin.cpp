@@ -2,7 +2,7 @@
 
 TempPlugin::TempPlugin() = default;
 
-void TempPlugin::prepareToPlay ([[maybe_unused]] double sampleRate, [[maybe_unused]] int samplesPerBlock)
+void TempPlugin::prepareToPlay ([[maybe_unused]] double sample_rate, [[maybe_unused]] int samples_per_block)
 {
 }
 

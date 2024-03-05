@@ -9,26 +9,14 @@ set(CMAKE_CXX_STANDARD 20)
 set(COMPANY_NAME "chowdsp")
 set(PRODUCT_NAME "TempPlugin")
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/modules/cmake")
 add_subdirectory(modules)
 
-# juce_set_vst2_sdk_path(C:/SDKs/VST_SDK/VST2_SDK)
 # set default plugin formats to build
 if(IOS)
     set(JUCE_FORMATS Standalone AUv3)
 else()
     set(JUCE_FORMATS AU VST3 Standalone)
-endif()
-
-# Build LV2 only on Linux
-if(UNIX AND NOT APPLE)
-    message(STATUS "Building LV2 plugin format")
-    list(APPEND JUCE_FORMATS LV2)
-endif()
-
-# Build VST2 is SDK set
-if(TARGET juce_vst2_sdk)
-    message(STATUS "Building VST2 plugin format")
-    list(APPEND JUCE_FORMATS VST)
 endif()
 
 juce_add_plugin(TempPlugin
@@ -62,11 +50,3 @@ target_compile_definitions(TempPlugin PUBLIC
 )
 
 target_link_libraries(TempPlugin PRIVATE juce_plugin_modules)
-
-# we need these flags for notarization on MacOS
-option(MACOS_RELEASE "Set build flags for MacOS Release" OFF)
-if(MACOS_RELEASE)
-    message(STATUS "Setting MacOS release flags...")
-    set_target_properties(TempPlugin_Standalone PROPERTIES
-        XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES)
-endif()

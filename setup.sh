@@ -33,12 +33,6 @@ declare -a source_files=("scripts/validate.sh"
     "src/CMakeLists.txt"
     "src/${plugin_name}.h"
     "src/${plugin_name}.cpp"
-    ".github/FUNDING.yml"
-    "installers/mac/build_mac_installer.sh"
-    "installers/mac/Intro.txt"
-    "installers/mac/${plugin_name}.pkgproj"
-    "installers/windows/build_win_installer.sh"
-    "installers/windows/${plugin_name}_Install_Script.iss"
 )
 for file in "${source_files[@]}"; do
     sed -i.bak -e "s/TempPlugin/${plugin_name}/g" $file

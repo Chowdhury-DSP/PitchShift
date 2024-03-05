@@ -6,11 +6,10 @@ message(STATUS "VERSION for JUCE: ${juce_version}")
 subproject_version(chowdsp_utils chowdsp_version)
 message(STATUS "VERSION for chowdsp: ${chowdsp_version}")
 
-include(cmake/WarningFlags.cmake)
+include(WarningFlags)
 add_library(juce_plugin_modules STATIC)
 target_link_libraries(juce_plugin_modules
     PRIVATE
-        BinaryData
         juce::juce_audio_utils
         juce::juce_dsp
         chowdsp::chowdsp_plugin_base
