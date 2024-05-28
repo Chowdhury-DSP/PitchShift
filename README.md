@@ -1,4 +1,4 @@
-# JUCE Plugin Template
+# Pitch Shift
 
 ![CI](https://github.com/Chowdhury-DSP/JUCEPluginTemplate/workflows/CI/badge.svg)
 [![License](https://img.shields.io/badge/License-BSD-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
@@ -12,8 +12,8 @@ To build from scratch, you must have CMake installed.
 
 ```bash
 # Clone the repository
-$ git clone https://github.com/Chowdhury-DSP/JUCEPluginTemplate.git
-$ cd JUCEPluginTemplate
+$ git clone https://github.com/Chowdhury-DSP/PitchShift.git
+$ cd PitchShift
 
 # set up plugin
 $ ./setup.sh MyPluginName MyPluginID
@@ -25,5 +25,5 @@ $ cmake --build build --config Release
 
 ## License
 
-JUCEPluginTemplate is open source, and is licensed under the BSD 3-clause license.
+PitchShift is open source, and is licensed under the BSD 3-clause license.
 Enjoy!

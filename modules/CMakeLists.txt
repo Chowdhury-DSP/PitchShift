@@ -1,5 +1,7 @@
 add_subdirectory(JUCE)
 add_subdirectory(chowdsp_utils)
+add_subdirectory(Bungee)
+target_compile_options(libbungee PRIVATE -Wno-cast-align)
 
 subproject_version(JUCE juce_version)
 message(STATUS "VERSION for JUCE: ${juce_version}")
@@ -15,6 +17,9 @@ target_link_libraries(juce_plugin_modules
         chowdsp::chowdsp_plugin_base
         chowdsp::chowdsp_plugin_state
         chowdsp::chowdsp_gui
+        chowdsp::chowdsp_dsp_data_structures
+        chowdsp::chowdsp_buffers
+        libbungee
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags

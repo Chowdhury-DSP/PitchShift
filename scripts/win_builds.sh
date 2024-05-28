@@ -31,7 +31,7 @@ wait
 # copy builds to bin
 mkdir -p bin/Win64
 mkdir -p bin/Win32
-declare -a plugins=("TempPlugin")
+declare -a plugins=("PitchShift")
 for plugin in "${plugins[@]}"; do
     cp -R build/${plugin}_artefacts/Release/Standalone/${plugin}.exe bin/Win64/${plugin}.exe
     cp -R build/${plugin}_artefacts/Release/VST/${plugin}.dll bin/Win64/${plugin}.dll
@@ -49,10 +49,10 @@ git restore CMakeLists.txt
 VERSION=$(cut -f 2 -d '=' <<< "$(grep 'CMAKE_PROJECT_VERSION:STATIC' build/CMakeCache.txt)")
 (
     cd bin
-    rm -f "TempPlugin-Win64-${VERSION}.zip"
-    zip -r "TempPlugin-Win64-${VERSION}.zip" Win64
-    # rm -f "TempPlugin-Win32-${VERSION}.zip"
-    # zip -r "TempPlugin-Win32-${VERSION}.zip" Win32
+    rm -f "PitchShift-Win64-${VERSION}.zip"
+    zip -r "PitchShift-Win64-${VERSION}.zip" Win64
+    # rm -f "PitchShift-Win32-${VERSION}.zip"
+    # zip -r "PitchShift-Win32-${VERSION}.zip" Win32
 )
 
 # create installer

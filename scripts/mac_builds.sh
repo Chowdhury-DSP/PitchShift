@@ -24,7 +24,7 @@ cmake --build build --config Release -j10 | xcpretty
 
 # copy builds to bin
 mkdir -p bin/Mac
-declare -a plugins=("TempPlugin")
+declare -a plugins=("PitchShift")
 for plugin in "${plugins[@]}"; do
     cp -R build/${plugin}_artefacts/Release/Standalone/${plugin}.app bin/Mac/${plugin}.app
     cp -R build/${plugin}_artefacts/Release/VST/${plugin}.vst bin/Mac/${plugin}.vst
@@ -60,8 +60,8 @@ echo "Zipping builds..."
 VERSION=$(cut -f 2 -d '=' <<< "$(grep 'CMAKE_PROJECT_VERSION:STATIC' build/CMakeCache.txt)")
 (
     cd bin
-    rm -f "TempPlugin-Mac-${VERSION}.zip"
-    zip -r "TempPlugin-Mac-${VERSION}.zip" Mac
+    rm -f "PitchShift-Mac-${VERSION}.zip"
+    zip -r "PitchShift-Mac-${VERSION}.zip" Mac
 )
 
 # create installer

@@ -15,12 +15,12 @@ plugin_id=$2
 echo "Creating plugin ${plugin_name}, with ID ${plugin_id} ..."
 
 echo "Copying source files..."
-mv src/TempPlugin.h src/${plugin_name}.h
-mv src/TempPlugin.cpp src/${plugin_name}.cpp
+mv src/PitchShift.h src/${plugin_name}.h
+mv src/PitchShift.cpp src/${plugin_name}.cpp
 
 echo "Copying installer files..."
-mv installers/mac/TempPlugin.pkgproj installers/mac/${plugin_name}.pkgproj
-mv installers/windows/TempPlugin_Install_Script.iss installers/windows/${plugin_name}_Install_Script.iss
+mv installers/mac/PitchShift.pkgproj installers/mac/${plugin_name}.pkgproj
+mv installers/windows/PitchShift_Install_Script.iss installers/windows/${plugin_name}_Install_Script.iss
 
 echo "Setting plugin ID..."
 sed -i.bak -e "s/XXXX/${plugin_id}/g" CMakeLists.txt
@@ -35,7 +35,7 @@ declare -a source_files=("scripts/validate.sh"
     "src/${plugin_name}.cpp"
 )
 for file in "${source_files[@]}"; do
-    sed -i.bak -e "s/TempPlugin/${plugin_name}/g" $file
+    sed -i.bak -e "s/PitchShift/${plugin_name}/g" $file
 done
 
 sed -i.bak -e "s/JUCEPluginTemplate/${plugin_name}/g" README.md

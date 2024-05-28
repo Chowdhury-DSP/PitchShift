@@ -33,10 +33,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # declare -a plugins=()
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     pluginval=$(install_pluginval_mac)
-    declare -a plugins=("build/TempPlugin_artefacts/VST3/TempPlugin.vst3")
+    declare -a plugins=("build/PitchShift_artefacts/VST3/PitchShift.vst3")
 else
     pluginval=$(install_pluginval_win)
-    declare -a plugins=("build/TempPlugin_artefacts/Release/VST3/TempPlugin.vst3")
+    declare -a plugins=("build/PitchShift_artefacts/Release/VST3/PitchShift.vst3")
 fi
 
 echo "Pluginval installed at ${pluginval}"
