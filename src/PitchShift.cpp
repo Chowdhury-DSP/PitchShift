@@ -1,7 +1,5 @@
 #include "PitchShift.h"
 
-namespace pitch_shift
-{
 PitchShift::PitchShift() = default;
 
 void PitchShift::prepareToPlay ([[maybe_unused]] double sample_rate, [[maybe_unused]] int samples_per_block)
@@ -99,7 +97,7 @@ void PitchShift::processAudioBlock ([[maybe_unused]] juce::AudioBuffer<float>& b
         }
         else // if (overflow_count < samples_to_fill)
         {
-            jassertfalse; // not sure if we'll ever hit this?
+//            jassertfalse; // not sure if we'll ever hit this?
             chowdsp::BufferMath::copyBufferData (overflow_buffer, buffer, 0, num_samples - overflow_count, overflow_count);
             overflow_count = 0;
         }
@@ -116,4 +114,3 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new PitchShift();
 }
-} //namespace pitch_shift
