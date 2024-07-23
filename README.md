@@ -18,6 +18,7 @@ To build from scratch, you must have CMake installed.
 # Clone the repository
 $ git clone https://github.com/Chowdhury-DSP/PitchShift.git
 $ cd PitchShift
+$ git submodule update --init --recursive
 
 # build with CMake
 $ cmake -Bbuild
